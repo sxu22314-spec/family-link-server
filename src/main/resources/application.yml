@@ -1,0 +1,9 @@
+spring:
+    application:
+        name: linkfamily
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/family_link
+        username: root
+        password: Xjs1234560
+
