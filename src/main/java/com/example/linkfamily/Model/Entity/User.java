@@ -20,10 +20,11 @@ import lombok.experimental.Accessors;
 public class User {
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Long userId;
+    private Long id;
 
-    @TableField("user_identity")
-    private String userIdentity;
+    @TableField("identity")
+    private String identity;
 
-    @Table
+    @TableField("nickname")
+    private String nickname;
 }

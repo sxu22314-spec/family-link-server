@@ -7,3 +7,15 @@ spring:
         username: root
         password: Xjs1234560
 
+# 配置 mybatis-plus
+mybatis-plus:
+  type-aliases-package: cn.edu.seig.pojo # 实体类所在的包，允许用实体类类名作为别名
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置日志
+    map-underscore-to-camel-case: true # 类属性与表字段的驼峰映射
+
+  global-config:
+    db-config: # 数据库配置
+      table-prefix: tb_  # 表名前缀为tb_，表名为前缀连接类名（小写）
+
