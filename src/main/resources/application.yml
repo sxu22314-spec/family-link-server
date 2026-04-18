@@ -9,7 +9,7 @@ spring:
 
 # 配置 mybatis-plus
 mybatis-plus:
-  type-aliases-package: cn.edu.seig.pojo # 实体类所在的包，允许用实体类类名作为别名
+  type-aliases-package: com.example.linkfamily.Model.Entity # 实体类所在的包，允许用实体类类名作为别名
 
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置日志
@@ -18,4 +18,10 @@ mybatis-plus:
   global-config:
     db-config: # 数据库配置
       table-prefix: tb_  # 表名前缀为tb_，表名为前缀连接类名（小写）
+
+minio:
+  endpoint: http://127.0.0.1:9000 # 修改你的 MinIO 端点
+  accessKey: minioadmin # 修改你的 MinIO Access Key
+  secretKey: minioadmin # 修改你的 MinIO Secret Key
+  bucket: family-link # 确认 Bucket 名称与你创建的一致
 
