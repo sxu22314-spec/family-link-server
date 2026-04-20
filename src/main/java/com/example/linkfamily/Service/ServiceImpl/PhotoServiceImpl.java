@@ -26,7 +26,19 @@ public class PhotoServiceImpl extends ServiceImpl<PhotoMapper, Photo> implements
                         String.valueOf(photo.getId()),
                         photo.getTitle(),
                         photo.getTheme() == null ? "" : photo.getTheme(),
-                        photo.getImageUrl()))
+                        photo.getImageUrl(),
+                        photo.getIsLocked())
+                    )
                 .toList();
+    }
+
+    @Override
+    public boolean updateIsLocked(Long id, Integer isLocked){
+        Photo photo = new Photo();
+        photo.setId(id);
+        photo.setIsLocked(isLocked);
+        
+        // MyBatis Plus 的方法：根据 ID 更新不为 null 的字段
+        return this.updateById(photo);
     }
 }

@@ -12,4 +12,5 @@ public class PuzzlePhotoVO {
     private String title;
     private String theme;
     private String imageUrl;
+    private Integer isLocked;
 }
