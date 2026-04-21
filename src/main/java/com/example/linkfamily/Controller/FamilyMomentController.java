@@ -79,8 +79,8 @@ public class FamilyMomentController {
             @ModelAttribute FamilyPhotoRequest request
     ) {
         try {
-            log.info("Upload photo: title={}, theme={}, photoDate={}", 
-                    request.getTitle(), request.getTheme(), request.getPhotoDate());
+            log.info("Upload photo: title={}, theme={}, photoDate={}, type={}", 
+                    request.getTitle(), request.getTheme(), request.getPhotoDate(), request.getType());
 
             if (file == null || file.isEmpty()) {
                 return new Response<>(400, "File cannot be empty", null);

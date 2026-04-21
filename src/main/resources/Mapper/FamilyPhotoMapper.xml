@@ -7,7 +7,7 @@
     <!-- Query photos by filters with pagination -->
     <select id="queryByFilters" resultType="com.example.linkfamily.Model.Entity.Photo">
         SELECT * FROM tb_photo
-        WHERE type = 2
+        WHERE type = 1 OR type = 2
         <if test="theme != null and theme != ''">
             AND theme = #{theme}
         </if>
@@ -24,7 +24,7 @@
     <!-- Count photos by filters -->
     <select id="countByFilters" resultType="int">
         SELECT COUNT(*) FROM tb_photo
-        WHERE type = 2
+        WHERE type = 1 OR type = 2
         <if test="theme != null and theme != ''">
             AND theme = #{theme}
         </if>
@@ -39,7 +39,7 @@
     <!-- Query photos by date range -->
     <select id="queryByDateRange" resultType="com.example.linkfamily.Model.Entity.Photo">
         SELECT * FROM tb_photo
-        WHERE type = 2
+        WHERE type = 2 OR type = 1
         <if test="dateFrom != null">
             AND photo_date >= #{dateFrom}
         </if>
@@ -52,7 +52,7 @@
     <!-- Query photos by theme -->
     <select id="queryByTheme" resultType="com.example.linkfamily.Model.Entity.Photo">
         SELECT * FROM tb_photo
-        WHERE type = 2
+        WHERE type = 2 OR type = 1
         <if test="theme != null and theme != ''">
             AND theme = #{theme}
         </if>

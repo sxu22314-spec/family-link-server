@@ -66,8 +66,8 @@ public class FamilyPhotoServiceImpl implements FamilyPhotoService {
             photo.setPhotoDate(request.getPhotoDate());
             photo.setCreateTime(LocalDateTime.now());
             photo.setImageUrl(filePath);
-            photo.setType(2); // Type 2 for family-moments
-            photo.setIsLocked(0);
+            photo.setType(request.getType()); // Type 2 for family-moments
+            photo.setIsLocked(1);
 
             // Save to database
             familyPhotoMapper.insert(photo);

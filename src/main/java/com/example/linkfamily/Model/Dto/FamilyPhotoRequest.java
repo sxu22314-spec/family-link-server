@@ -16,4 +16,6 @@ public class FamilyPhotoRequest {
     private String theme;
     
     private LocalDate photoDate;
+
+    private Integer type; // 1 for family-album, 2 for family-moments
 }
