@@ -21,7 +21,7 @@ mybatis-plus:
       table-prefix: tb_  # 表名前缀为tb_，表名为前缀连接类名（小写）
 
 minio:
-  endpoint: http://192.168.1.104:9000 # 修改你的 MinIO 端点
+  endpoint: http://192.168.0.36:9000 # 修改你的 MinIO 端点
   accessKey: minioadmin # 修改你的 MinIO Access Key
   secretKey: minioadmin # 修改你的 MinIO Secret Key
   bucket: family-link # 确认 Bucket 名称与你创建的一致
