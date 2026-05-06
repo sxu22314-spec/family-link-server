@@ -10,10 +10,11 @@ import com.example.linkfamily.Model.Entity.Story;
 
 @Mapper
 public interface StoryMapper extends BaseMapper<Story> {
+
     @Select("""
         SELECT id, photo_id, title, description, subject,
                audio_url, cover_image_url, listen_count, is_locked,
-               created_at, updated_at
+               task_type, task_data, created_at, updated_at
         FROM tb_story
         WHERE photo_id = #{photoId}
         ORDER BY id DESC

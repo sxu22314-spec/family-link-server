@@ -38,6 +38,15 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * Handle invalid request parameters
+     */
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Response<Object> handleIllegalArgumentException(IllegalArgumentException e) {
+        log.error("IllegalArgumentException: {}", e.getMessage());
+        return new Response<>(400, e.getMessage(), null);
+    }
+
+    /**
      * Handle general exceptions
      */
     @ExceptionHandler(Exception.class)

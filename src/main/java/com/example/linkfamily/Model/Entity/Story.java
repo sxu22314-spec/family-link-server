@@ -46,10 +46,15 @@ public class Story {
     @TableField("is_locked")
     private Integer isLocked;
 
+    @TableField("task_type")
+    private String taskType;
+
+    @TableField("task_data")
+    private String taskData;
+
     @TableField("created_at")
     private LocalDateTime createdAt;
 
     @TableField("updated_at")
     private LocalDateTime updatedAt;
-    
 }

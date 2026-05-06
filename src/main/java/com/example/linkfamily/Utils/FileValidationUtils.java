@@ -5,7 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileValidationUtils {
 
-    private static final long MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
     private static final String[] ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "gif"};
     private static final String[] ALLOWED_MIME_TYPES = {
             "image/jpeg",
@@ -19,11 +18,6 @@ public class FileValidationUtils {
     public static void validateFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new FileException(400, "File cannot be empty");
-        }
-
-        // Check file size
-        if (file.getSize() > MAX_FILE_SIZE) {
-            throw new FileException(413, "File size exceeds 10MB limit");
         }
 
         // Check MIME type
