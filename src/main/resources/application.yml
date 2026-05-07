@@ -1,3 +1,9 @@
+app:
+  cors:
+    allowed-origins:
+      - "https://family-link-client.vercel.app"
+      - "http://localhost:5173"
+
 spring:
     application:
         name: linkfamily

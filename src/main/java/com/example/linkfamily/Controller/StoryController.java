@@ -20,7 +20,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/story")
-@CrossOrigin(origins = "*")
 public class StoryController {
 
     private static final Set<String> ALLOWED_TASK_TYPES = Set.of("drawing", "question", "memory-match", "photo-upload");

@@ -20,7 +20,6 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/family-moment")
-@CrossOrigin
 public class FamilyMomentController {
 
     @Autowired
