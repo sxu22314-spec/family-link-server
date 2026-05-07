@@ -83,8 +83,8 @@ public class MinioService {
     public String generatePublicUrl(String filePath) {
         // Format: http://endpoint/bucket/object
         return endpoint.endsWith("/") ?
-                endpoint + bucket + "/" + filePath :
-                endpoint + "/" + bucket + "/" + filePath;
+                endpoint +  "storage/v1/object/" + bucket + "/" + filePath :
+                endpoint + "/storage/v1/object/" + bucket + "/" + filePath;
     }
 
     /**

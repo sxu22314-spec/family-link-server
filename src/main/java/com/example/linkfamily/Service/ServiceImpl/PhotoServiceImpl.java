@@ -33,7 +33,7 @@ public class PhotoServiceImpl extends ServiceImpl<PhotoMapper, Photo> implements
 
         // 核心逻辑：拼接基础前缀
         // 结果示例: http://192.168.1.104:9000/family-link/
-        String urlPrefix = minioEndpoint + "/" + bucketName + "/";
+        String urlPrefix = minioEndpoint + "/storage/v1/object/" + bucketName + "/";
 
         return photos.stream()
             .map(photo -> {

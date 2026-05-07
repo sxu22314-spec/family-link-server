@@ -13,9 +13,9 @@ spring:
             max-request-size: -1
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/family_link
-        username: root
-        password: Xjs1234560
+        url: jdbc:mysql://mysql-family-link-sxu22314-familylink.k.aivencloud.com:13996/defaultdb?useSSL=true&verifyServerCertificate=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+        username: avnadmin
+        password: AVNS_aJ4Zy4rfYjn0UlTe-mK
 
 # 配置 mybatis-plus
 mybatis-plus:
@@ -31,8 +31,8 @@ mybatis-plus:
       table-prefix: tb_  # 表名前缀为tb_，表名为前缀连接类名（小写）
 
 minio:
-  endpoint: http://192.168.1.106:9000 # 修改你的 MinIO 端点
-  accessKey: minioadmin # 修改你的 MinIO Access Key
-  secretKey: minioadmin # 修改你的 MinIO Secret Key
-  bucket: family-link # 确认 Bucket 名称与你创建的一致
+  endpoint: https://mettehfbnfkovpdunpxg.storage.supabase.co
+  accessKey: abcdc0513916e9271e34f47298d8a3ee
+  secretKey: e2de7a9c3481fd6638d5a2a0be7d96d9a89e90023a121bc757666373416e50f9
+  bucket: family-link
 
