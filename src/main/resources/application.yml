@@ -1,39 +1,38 @@
 app:
   cors:
     allowed-origins:
-      - "https://family-link-client.vercel.app"
-      - "http://localhost:5173"
+      - "${APP_CORS_ALLOWED_ORIGIN_PROD}"
+      - "${APP_CORS_ALLOWED_ORIGIN_LOCAL}"
 
 spring:
-    application:
-        name: linkfamily
-    servlet:
-        multipart:
-            max-file-size: -1
-            max-request-size: -1
-    datasource:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://mysql-family-link-sxu22314-familylink.k.aivencloud.com:13996/defaultdb?useSSL=true&verifyServerCertificate=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-        username: avnadmin
-        password: AVNS_aJ4Zy4rfYjn0UlTe-mK
+  application:
+    name: linkfamily
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
 # 配置 mybatis-plus
 mybatis-plus:
-  type-aliases-package: com.example.linkfamily.Model.Entity # 实体类所在的包，允许用实体类类名作为别名
-  mapper-locations: classpath:Mapper/*.xml # Mapper XML文件位置
+  type-aliases-package: com.example.linkfamily.Model.Entity
+  mapper-locations: classpath:Mapper/*.xml
 
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置日志
-    map-underscore-to-camel-case: true # 类属性与表字段的驼峰映射
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
 
   global-config:
-    db-config: # 数据库配置
-      table-prefix: tb_  # 表名前缀为tb_，表名为前缀连接类名（小写）
+    db-config:
+      table-prefix: tb_
 
 minio:
-  endpoint: https://mettehfbnfkovpdunpxg.storage.supabase.co
-  s3-endpoint: https://mettehfbnfkovpdunpxg.s3.supabase.co
-  accessKey: abcdc0513916e9271e34f47298d8a3ee
-  secretKey: e2de7a9c3481fd6638d5a2a0be7d96d9a89e90023a121bc757666373416e50f9
-  bucket: family-link
-
+  endpoint: ${MINIO_ENDPOINT}
+  s3-endpoint: ${MINIO_S3_ENDPOINT}
+  accessKey: ${MINIO_ACCESS_KEY}
+  secretKey: ${MINIO_SECRET_KEY}
+  bucket: ${MINIO_BUCKET}
