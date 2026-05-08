@@ -32,6 +32,7 @@ mybatis-plus:
 
 minio:
   endpoint: https://mettehfbnfkovpdunpxg.storage.supabase.co
+  s3-endpoint: https://mettehfbnfkovpdunpxg.s3.supabase.co
   accessKey: abcdc0513916e9271e34f47298d8a3ee
   secretKey: e2de7a9c3481fd6638d5a2a0be7d96d9a89e90023a121bc757666373416e50f9
   bucket: family-link

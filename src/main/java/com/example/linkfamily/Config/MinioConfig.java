@@ -9,8 +9,8 @@ import io.minio.MinioClient;
 @Configuration
 public class MinioConfig {
     
-    @Value("${minio.endpoint}")
-    private String endpoint;
+    @Value("${minio.s3-endpoint}")
+    private String s3Endpoint;
 
     @Value("${minio.accessKey}")
     private String accessKey;
@@ -21,8 +21,9 @@ public class MinioConfig {
     @Bean
     public MinioClient minioClient() {
         return MinioClient.builder()
-                .endpoint(endpoint)
+                .endpoint(s3Endpoint)
                 .credentials(accessKey, secretKey)
+                .region("eu-west-1")
                 .build();
     }
 }

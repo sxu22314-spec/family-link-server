@@ -50,6 +50,7 @@ public class StoryController {
         }
 
         Page<Story> pageData = storyService.listStories(resolvedPageNum, resolvedPageSize);
+        pageData.getRecords().forEach(this::hydrateAudioUrl);
         Map<String, Object> data = new HashMap<>();
         data.put("records", pageData.getRecords());
         data.put("total", pageData.getTotal());
@@ -83,7 +84,7 @@ public class StoryController {
             if (Boolean.TRUE.equals(uploadAudio)) {
                 AudioValidationUtils.validateAudioFile(audioFile);
                 String objectName = minioService.uploadFile(audioFile, audioFile.getOriginalFilename());
-                audioUrl = minioService.generatePublicUrl(objectName);
+                audioUrl = objectName;
             }
 
             Story story = new Story()
@@ -101,7 +102,9 @@ public class StoryController {
                 story.setIsLocked(1);
             }
 
-            return Response.success("ok", storyService.createStory(story));
+            Story created = storyService.createStory(story);
+            hydrateAudioUrl(created);
+            return Response.success("ok", created);
         } catch (FileException e) {
             return new Response<>(e.getCode(), e.getMessage(), null);
         }
@@ -126,6 +129,7 @@ public class StoryController {
         if (saved == null) {
             return Response.error("Story not found");
         }
+        hydrateAudioUrl(saved);
         return Response.success("ok", saved);
     }
 
@@ -150,6 +154,7 @@ public class StoryController {
         if (story == null) {
             return Response.error("No story found for photoId=" + photoId);
         }
+        hydrateAudioUrl(story);
         return Response.success(story);
     }
 
@@ -162,6 +167,7 @@ public class StoryController {
         if (story == null) {
             return Response.error("Story not found");
         }
+        hydrateAudioUrl(story);
         return Response.success(story);
     }
 
@@ -169,6 +175,12 @@ public class StoryController {
     public Response<Boolean> incrementListenCount(@PathVariable Long storyId) {
         storyService.incrementListenCount(storyId);
         return Response.success();
+    }
+
+    private void hydrateAudioUrl(Story story) {
+        if (story != null && StringUtils.hasText(story.getAudioUrl())) {
+            story.setAudioUrl(minioService.generatePublicUrl(story.getAudioUrl()));
+        }
     }
 
     private int firstValid(Integer first, Integer second, Integer third, int defaultValue) {
