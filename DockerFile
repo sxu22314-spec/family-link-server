@@ -1,0 +1,31 @@
+# --- 阶段一：构建阶段 (Build Stage) ---
+# 使用 Maven 镜像进行编译，这样你不需要在本地打包，直接传源码即可
+FROM maven:3.8.5-openjdk-17 AS build
+
+# 设置容器内的工作目录
+WORKDIR /app
+
+# 将本地的 pom.xml 和 源码 拷贝到容器中
+COPY pom.xml .
+COPY src ./src
+
+# 执行打包命令，跳过单元测试以加快构建速度
+RUN mvn clean package -DskipTests
+
+# --- 阶段二：运行阶段 (Run Stage) ---
+# 使用更轻量、更小的 JRE 镜像，减少线上内存占用
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+# 从构建阶段拷贝生成的 jar 包到当前镜像
+# 注意：你的 jar 包名字通常是 target/项目名-版本号.jar，用 *.jar 比较通用
+COPY --from=build /app/target/*.jar app.jar
+
+# 暴露端口（Render 默认通常是 8080）
+EXPOSE 8080
+
+# 启动命令：针对 512MB 内存环境进行了优化
+# -Xmx256m: 限制 JVM 最大堆内存为 256MB，给系统留出呼吸空间
+# -Xss512k: 减小线程栈大小，节省内存
+ENTRYPOINT ["java", "-Xmx256m", "-Xss512k", "-jar", "app.jar"]
